@@ -1,25 +1,68 @@
 body{
+    box-sizing: border-box;
+    font-family: "SUSE", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
     height: 100vh;
-    background-color: pink;
 
 }
 .container{
     display: flex;
     flex-direction: column;
     background-color: white;
+    border: 2px pink solid;
+    border-radius: 5px;
     width: 300px;
-    height: 500px;
+    height: 450px;
 }
 
 button{
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 
 .display{
+    font-size: 24px;
     align-self: flex-end;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.digits{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    gap: 5px;
+}
+
+.columnOne, .columnTwo{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+.columnOne button, .columnTwo button, #zero{
+    border-radius: 50%;
+    background-color: white;
+    border: 2px pink solid;
+    font-family: "SUSE", sans-serif;
+    transition: 0.3s;
+
+}
+
+
+#zero{
+    flex-grow: 1;
+    border-radius: 50px;
+}
+
+
+.columnOne button:hover, .columnTwo button:hover, #zero:hover{
+    background-color: pink;
+    border: 2px white solid;
+    color: white;
 }

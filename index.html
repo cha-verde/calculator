@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <div class="display">0</div>
         <div class="digits">
-            <button class="erase">C</button>
-            <button>+/-</button>
-            <button class="backspace">backspace</button>
-            <button class="operators" value="divide">:</button>
-            <button class="numbers">7</button>
-            <button class="numbers">8</button>
-            <button class="numbers">9</button>
-            <button class="operators" value="multiply">x</button>
-            <button class="numbers">4</button>
-            <button class="numbers">5</button>
-            <button class="numbers">6</button>
-            <button class="operators" value="subtract">-</button>
-            <button class="numbers">1</button>
-            <button class="numbers">2</button>
-            <button class="numbers">3</button>
-            <button class="operators" value="add">+</button>
-            <button class="numbers">0</button>
-            <button class="equal">=</button>
+            <div class="columnOne">
+                <button class="erase">C</button>
+                <button class="backspace">&lt;</button>
+                <button class="numbers">7</button>
+                <button class="numbers">8</button>
+                <button class="numbers">4</button>
+                <button class="numbers">5</button>
+                <button class="numbers">1</button>
+                <button class="numbers">2</button>
+                <button class="numbers" id="zero">0</button>
+            </div>
+
+            <div class="columnTwo">
+                <button class="negative">+/-</button>
+                <button class="operators" value="divide">:</button>
+                <button class="numbers">9</button>
+                <button class="operators" value="multiply">x</button>
+                <button class="numbers">6</button>
+                <button class="operators" value="subtract">-</button>
+                <button class="numbers">3</button>
+                <button class="operators" value="add">+</button>
+                <button class="decimal">.</button>
+                <button class="equal">=</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

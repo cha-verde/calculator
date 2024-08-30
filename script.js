@@ -1,19 +1,19 @@
 function add(number1, number2) {
-    return Number(number1) + Number(number2);
+    return (Number(number1) + Number(number2));
 }
 
 function subtract(number1, number2) {
-    return Number(number1) - Number(number2);
+    return (Number(number1) - Number(number2));
 }
 
 function multiply(number1, number2) {
-    return Number(number1) * Number(number2);
+    return (Number(number1) * Number(number2));
 }
 function divide(number1, number2) {
     if (number2 == 0) {
         return Infinity;
     }
-    return Number(number1) / Number(number2);
+    return (Number(number1) / Number(number2));
 }
 
 let firstNumber = '';
@@ -21,6 +21,8 @@ let operator = '';
 let secondNumber = '';
 let displayValue = '';
 let newNumber = false;
+
+const decimalButton = document.querySelector(".decimal");
 
 function operate(operator, number1, number2) {
     switch (operator) {
@@ -42,29 +44,48 @@ const display = document.querySelector(".display");
 numberButtons.forEach((button) => {
     // and for each one we add a 'click' listener
     button.addEventListener("click", () => {
-        if (display.textContent == '0' || newNumber == true) {
-            if (button.textContent == 0) {
-
+        if (display.textContent.length < 12) {
+            if (newNumber == false) {
+                if (display.textContent == '0') {
+                    display.textContent = button.textContent;
+                }
+                else {
+                    display.textContent = display.textContent + button.textContent;
+                }
+                equalButton.disabled = false;
             }
             else {
                 newNumber = false;
                 display.textContent = button.textContent;
+                equalButton.disabled = false;
             }
         }
-        else if (operator != '') {
-            if (newNumber == true) {
-                display.textContent = button.textContent;
-            }
-            else {
-                display.textContent = display.textContent + button.textContent;
-            }
-        }
-        else {
-            display.textContent = display.textContent + button.textContent;
-        }
-
     });
 })
+
+const negativeButton = document.querySelector(".negative");
+
+negativeButton.addEventListener("click", () => {
+    if (display.textContent[0] != '-') {
+        let splitted = display.textContent.split('')
+        splitted.unshift('-');
+        display.textContent = splitted.join('');
+    }
+    else {
+        let splitted = display.textContent.split('')
+        splitted.shift();
+        display.textContent = splitted.join('');
+    }
+})
+
+
+decimalButton.addEventListener("click", () => {
+    if (display.textContent.indexOf('.') == -1) {
+        decimalButton.disabled = true;
+        display.textContent = display.textContent + '.';
+    }
+})
+
 
 const eraseButton = document.querySelector(".erase");
 
@@ -73,6 +94,7 @@ eraseButton.addEventListener("click", () => {
     secondNumber = '';
     operator = '';
     display.textContent = '0';
+    decimalButton.disabled = false;
 })
 
 const backspaceButton = document.querySelector(".backspace");
@@ -81,10 +103,10 @@ backspaceButton.addEventListener("click", () => {
     let split = display.textContent.split('');
     console.log(split);
     split.pop();
-    if(split.length == 0){
+    if (split.length == 0) {
         display.textContent = 0;
     }
-    else{
+    else {
         display.textContent = split.join('');
     }
 })
@@ -101,12 +123,17 @@ operatorButtons.forEach((button) => {
             display.textContent = '0';
             operator = button.value;
             newNumber = true;
+            decimalButton.disabled = false;
+            equalButton.disabled = true;
+
         }
         else {
             newNumber = true;
             operator = button.value;
             calculate();
             firstNumber = display.textContent;
+            decimalButton.disabled = false;
+            equalButton.disabled = true;
         }
     });
 })
@@ -115,7 +142,7 @@ const equalButton = document.querySelector(".equal");
 
 equalButton.addEventListener("click", () => {
     if (firstNumber == '') {
-        alert('Enter two value!')
+        alert('Enter two values!')
     }
     else if (operator == '') {
         alert('No operator!')
@@ -126,6 +153,7 @@ equalButton.addEventListener("click", () => {
         secondNumber = '';
         operator = '';
         newNumber = true;
+        decimalButton.disabled = false;
     }
 })
 
