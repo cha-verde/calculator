@@ -10,6 +10,9 @@ function multiply(number1, number2) {
     return Number(number1) * Number(number2);
 }
 function divide(number1, number2) {
+    if (number2 == 0) {
+        return Infinity;
+    }
     return Number(number1) / Number(number2);
 }
 
@@ -48,11 +51,11 @@ numberButtons.forEach((button) => {
                 display.textContent = button.textContent;
             }
         }
-        else if(operator != ''){
-            if(newNumber == true){
+        else if (operator != '') {
+            if (newNumber == true) {
                 display.textContent = button.textContent;
             }
-            else{
+            else {
                 display.textContent = display.textContent + button.textContent;
             }
         }
@@ -71,6 +74,22 @@ eraseButton.addEventListener("click", () => {
     operator = '';
     display.textContent = '0';
 })
+
+const backspaceButton = document.querySelector(".backspace");
+
+backspaceButton.addEventListener("click", () => {
+    let split = display.textContent.split('');
+    console.log(split);
+    split.pop();
+    if(split.length == 0){
+        display.textContent = 0;
+    }
+    else{
+        display.textContent = split.join('');
+    }
+})
+
+
 
 const operatorButtons = document.querySelectorAll(".operators");
 
@@ -95,12 +114,19 @@ operatorButtons.forEach((button) => {
 const equalButton = document.querySelector(".equal");
 
 equalButton.addEventListener("click", () => {
-    calculate();
-    firstNumber = '';
-    secondNumber = '';
-    operator = '';
-    newNumber = true;
-
+    if (firstNumber == '') {
+        alert('Enter two value!')
+    }
+    else if (operator == '') {
+        alert('No operator!')
+    }
+    else {
+        calculate();
+        firstNumber = '';
+        secondNumber = '';
+        operator = '';
+        newNumber = true;
+    }
 })
 
 function calculate() {
