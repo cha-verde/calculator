@@ -22,6 +22,7 @@ let secondNumber = '';
 let displayValue = '';
 let newNumber = false;
 
+/*move it closer to the function */
 const decimalButton = document.querySelector(".decimal");
 
 function operate(operator, number1, number2) {
@@ -34,6 +35,7 @@ function operate(operator, number1, number2) {
             return multiply(number1, number2)
         case "divide":
             return divide(number1, number2)
+        /* add a default */
     }
 }
 
@@ -45,20 +47,26 @@ numberButtons.forEach((button) => {
     // and for each one we add a 'click' listener
     button.addEventListener("click", () => {
         if (display.textContent.length < 12) {
+            /*change to !newNumber */
             if (newNumber == false) {
                 if (display.textContent == '0') {
                     display.textContent = button.textContent;
                 }
                 else {
+                    /* change to += */
                     display.textContent = display.textContent + button.textContent;
                 }
+                /*remove*/
                 equalButton.disabled = false;
             }
             else {
                 newNumber = false;
                 display.textContent = button.textContent;
+                /*remove*/
                 equalButton.disabled = false;
             }
+            /* add equalButton.disabled = false; */
+            
         }
     });
 })
@@ -67,11 +75,13 @@ const negativeButton = document.querySelector(".negative");
 
 negativeButton.addEventListener("click", () => {
     if (display.textContent[0] != '-') {
+        /* just concate string */
         let splitted = display.textContent.split('')
         splitted.unshift('-');
         display.textContent = splitted.join('');
     }
     else {
+        /* use substring */
         let splitted = display.textContent.split('')
         splitted.shift();
         display.textContent = splitted.join('');
@@ -80,8 +90,10 @@ negativeButton.addEventListener("click", () => {
 
 
 decimalButton.addEventListener("click", () => {
+    /* check if button is disabled */
     if (display.textContent.indexOf('.') == -1) {
         decimalButton.disabled = true;
+        /* use += */
         display.textContent = display.textContent + '.';
     }
 })
@@ -100,6 +112,7 @@ eraseButton.addEventListener("click", () => {
 const backspaceButton = document.querySelector(".backspace");
 
 backspaceButton.addEventListener("click", () => {
+    /* use substring */
     let split = display.textContent.split('');
     console.log(split);
     split.pop();
@@ -123,6 +136,7 @@ operatorButtons.forEach((button) => {
             display.textContent = '0';
             operator = button.value;
             newNumber = true;
+            /* same lines inside the lines, move them outside */
             decimalButton.disabled = false;
             equalButton.disabled = true;
 
@@ -149,6 +163,7 @@ equalButton.addEventListener("click", () => {
     }
     else {
         calculate();
+        /* extract these three lines and move them in a new function */
         firstNumber = '';
         secondNumber = '';
         operator = '';
